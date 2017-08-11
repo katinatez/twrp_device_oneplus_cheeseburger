@@ -53,6 +53,16 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
+
+# Uncomment below to build from kernel source
+# BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+# TARGET_KERNEL_APPEND_DTB := true
+# TARGET_KERNEL_ARCH := arm64
+# TARGET_KERNEL_HEADER_ARCH := arm64
+# TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
+# TARGET_KERNEL_CONFIG := twrp_defconfig
+# TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+# Prebuilt Kernel
 TARGET_PREBUILT_KERNEL := device/oneplus/cheeseburger/prebuilt/Image.gz-dtb
 
 # Platform
