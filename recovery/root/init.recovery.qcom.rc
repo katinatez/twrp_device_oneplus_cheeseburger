@@ -71,18 +71,18 @@ on fs
 	
 on property:sys.boot_completed=1
     # Tweak IO performance after boot complete
-    write /sys/block/dm-0/queue/scheduler "zen"
-    write /sys/block/dm-1/queue/scheduler "zen"
-    write /sys/block/sda/queue/scheduler "zen"
-    write /sys/block/sde/queue/scheduler "zen"
-    write /sys/block/dm-0/queue/read_ahead_kb 128
-    write /sys/block/dm-1/queue/read_ahead_kb 128
-    write /sys/block/sda/queue/read_ahead_kb 128
+    write /sys/block/dm-0/queue/scheduler "cfq"
+    write /sys/block/dm-1/queue/scheduler "cfq"
+    write /sys/block/sda/queue/scheduler "cfq"
+    write /sys/block/sde/queue/scheduler "cfq"
+    write /sys/block/dm-0/queue/read_ahead_kb 512
+    write /sys/block/dm-1/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/read_ahead_kb 512
 	write /sys/block/sda/queue/iostats 1
-	write /sys/block/sda/queue/nr_requests 128
-    write /sys/block/sde/queue/read_ahead_kb 128
+	write /sys/block/sda/queue/nr_requests 512
+    write /sys/block/sde/queue/read_ahead_kb 512
 	write /sys/block/sde/queue/iostats 1
-	write /sys/block/sde/queue/nr_requests 128
+	write /sys/block/sde/queue/nr_requests 512
 
     # Enable Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
@@ -110,32 +110,32 @@ on property:sys.boot_completed=1
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Configure governor settings for little cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "blu_active"
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/above_hispeed_delay 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_rate 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/hispeed_freq 1248000
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/io_is_busy 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/align_windows 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/target_loads "83 1804800:95"
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_slack 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane_threshold 50
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1248000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "83 1804800:95"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fastlane 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fastlane_threshold 50
 
     # Configure governor settings for big cluster
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "blu_active"
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/above_hispeed_delay 20000
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/timer_rate 20000
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/hispeed_freq 1574400
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/io_is_busy 0
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/align_windows 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/target_loads "83 1939200:90 2016000:95"
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/timer_slack 20000
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/fastlane 1
-    write /sys/devices/system/cpu/cpu4/cpufreq/blu_active/fastlane_threshold 50
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1574400
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "83 1939200:90 2016000:95"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/fastlane 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/fastlane_threshold 50
 
     # Re-enable thermal hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
